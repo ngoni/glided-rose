@@ -48,5 +48,4 @@ dependencies {
     // ==============================  APP TESTING LIBRARIES ============================================
 
     testImplementation 'junit:junit:4.13.2'
-    testImplementation("com.approvaltests:approvaltests:15.1.1")
 }
