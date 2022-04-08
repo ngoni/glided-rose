@@ -30,13 +30,17 @@ class GildedRose(val items: Array<Item>) {
                     if (!isBackstagePass(i)) {
                         decrementItemQuality(i)
                     } else {
-                        items[i].quality = items[i].quality - items[i].quality
+                        dropQualityToZero(i)
                     }
                 } else {
                     incrementItemQuality(i)
                 }
             }
         }
+    }
+
+    private fun dropQualityToZero(i: Int) {
+        items[i].quality = 0
     }
 
     private fun incrementItemQuality(i: Int) {
