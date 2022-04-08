@@ -10,11 +10,7 @@ class GildedRose(val items: Array<Item>) {
             if (!isAgedBrie(i)
                 && !isBackstagePass(i)
             ) {
-                if (items[i].quality > 0) {
-                    if (!isLegendary(i)) {
-                        items[i].quality = items[i].quality - 1
-                    }
-                }
+                decrementItemQuality(i)
             } else {
                 if (items[i].quality < 50) {
                     items[i].quality = items[i].quality + 1
@@ -36,11 +32,7 @@ class GildedRose(val items: Array<Item>) {
             if (items[i].sellIn < 0) {
                 if (!isAgedBrie(i)) {
                     if (!isBackstagePass(i)) {
-                        if (items[i].quality > 0) {
-                            if (!isLegendary(i)) {
-                                items[i].quality = items[i].quality - 1
-                            }
-                        }
+                        decrementItemQuality(i)
                     } else {
                         items[i].quality = items[i].quality - items[i].quality
                     }
@@ -49,6 +41,14 @@ class GildedRose(val items: Array<Item>) {
                         items[i].quality = items[i].quality + 1
                     }
                 }
+            }
+        }
+    }
+
+    private fun decrementItemQuality(i: Int) {
+        if (items[i].quality > 0) {
+            if (!isLegendary(i)) {
+                items[i].quality = items[i].quality - 1
             }
         }
     }
