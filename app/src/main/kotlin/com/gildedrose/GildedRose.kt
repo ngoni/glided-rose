@@ -12,11 +12,9 @@ class GildedRose(val items: Array<Item>) {
             ) {
                 decrementItemQuality(i)
             } else {
-                if (items[i].quality < 50) {
-                    items[i].quality = items[i].quality + 1
-                    if (isBackstagePass(i)) {
-                        incrementBackstagePassQuality(i)
-                    }
+                incrementItemQuality(i)
+                if (isBackstagePass(i)) {
+                    incrementBackstagePassQuality(i)
                 }
             }
 
