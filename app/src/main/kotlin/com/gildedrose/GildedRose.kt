@@ -12,7 +12,9 @@ class GildedRose(val items: Array<Item>) {
     fun updateQuality() {
         for (item in items) {
 
-            decrementSellIn(item)
+            if (!isItemType(item, ITEM_LEGENDARY)) {
+                decrementSellIn(item)
+            }
 
             if (!isItemType(item, ITEM_AGED_BRIE)
                 && !isItemType(item, ITEM_BACK_STAGE_PASS)
@@ -75,9 +77,7 @@ class GildedRose(val items: Array<Item>) {
     }
 
     private fun decrementSellIn(item: Item) {
-        if (!isItemType(item, ITEM_LEGENDARY)) {
-            item.sellIn = item.sellIn - 1
-        }
+        item.sellIn = item.sellIn - 1
     }
 
     private fun isItemType(item: Item, name: String) = item.name == name
