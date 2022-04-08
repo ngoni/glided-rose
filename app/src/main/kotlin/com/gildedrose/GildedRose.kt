@@ -9,74 +9,74 @@ class GildedRose(val items: Array<Item>) {
     }
 
     fun updateQuality() {
-        for (i in items.indices) {
+        for (item in items) {
 
-            decrementSellIn(i)
+            decrementSellIn(item)
 
-            if (!isAgedBrie(i)
-                && !isBackstagePass(i)
+            if (!isAgedBrie(item)
+                && !isBackstagePass(item)
             ) {
-                decrementItemQuality(i)
+                decrementItemQuality(item)
             } else {
-                incrementItemQuality(i)
-                if (isBackstagePass(i)) {
-                    incrementBackstagePassQuality(i)
+                incrementItemQuality(item)
+                if (isBackstagePass(item)) {
+                    incrementBackstagePassQuality(item)
                 }
             }
 
-            if (isSellInLessThan(i, 0)) {
-                if (!isAgedBrie(i)) {
-                    if (!isBackstagePass(i)) {
-                        decrementItemQuality(i)
+            if (isSellInLessThan(item, 0)) {
+                if (!isAgedBrie(item)) {
+                    if (!isBackstagePass(item)) {
+                        decrementItemQuality(item)
                     } else {
-                        dropQualityToZero(i)
+                        dropQualityToZero(item)
                     }
                 } else {
-                    incrementItemQuality(i)
+                    incrementItemQuality(item)
                 }
             }
         }
     }
 
-    private fun incrementBackstagePassQuality(i: Int) {
-        if (isSellInLessThan(i, 11)) {
-            incrementItemQuality(i)
+    private fun incrementBackstagePassQuality(item: Item) {
+        if (isSellInLessThan(item, 11)) {
+            incrementItemQuality(item)
         }
-        if (isSellInLessThan(i, 6)) {
-            incrementItemQuality(i)
-        }
-    }
-
-    private fun isSellInLessThan(i: Int, days: Int) = items[i].sellIn < days
-
-    private fun dropQualityToZero(i: Int) {
-        items[i].quality = 0
-    }
-
-    private fun incrementItemQuality(i: Int) {
-        if (items[i].quality < 50) {
-            items[i].quality = items[i].quality + 1
+        if (isSellInLessThan(item, 6)) {
+            incrementItemQuality(item)
         }
     }
 
-    private fun decrementItemQuality(i: Int) {
-        if (items[i].quality > 0) {
-            if (!isLegendary(i)) {
-                items[i].quality = items[i].quality - 1
+    private fun isSellInLessThan(item: Item, days: Int) = item.sellIn < days
+
+    private fun dropQualityToZero(item: Item) {
+        item.quality = 0
+    }
+
+    private fun incrementItemQuality(item: Item) {
+        if (item.quality < 50) {
+            item.quality = item.quality + 1
+        }
+    }
+
+    private fun decrementItemQuality(item: Item) {
+        if (item.quality > 0) {
+            if (!isLegendary(item)) {
+                item.quality = item.quality - 1
             }
         }
     }
 
-    private fun decrementSellIn(i: Int) {
-        if (!isLegendary(i)) {
-            items[i].sellIn = items[i].sellIn - 1
+    private fun decrementSellIn(item: Item) {
+        if (!isLegendary(item)) {
+            item.sellIn = item.sellIn - 1
         }
     }
 
-    private fun isLegendary(i: Int) = items[i].name.equals(ITEM_LEGENDARY)
+    private fun isLegendary(item: Item) = item.name.equals(ITEM_LEGENDARY)
 
-    private fun isBackstagePass(i: Int) =
-        items[i].name.equals(ITEM_BACK_STAGE_PASS)
+    private fun isBackstagePass(item: Item) =
+        item.name.equals(ITEM_BACK_STAGE_PASS)
 
-    private fun isAgedBrie(i: Int) = items[i].name.equals(ITEM_AGED_BRIE)
+    private fun isAgedBrie(item: Item) = item.name.equals(ITEM_AGED_BRIE)
 }
