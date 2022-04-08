@@ -4,6 +4,9 @@ class GildedRose(val items: Array<Item>) {
 
     fun updateQuality() {
         for (i in items.indices) {
+
+            decrementSellIn(i)
+
             if (!isAgedBrie(i)
                 && !isBackstagePass(i)
             ) {
@@ -29,9 +32,7 @@ class GildedRose(val items: Array<Item>) {
                     }
                 }
             }
-            if (!isLengendary(i)) {
-                items[i].sellIn = items[i].sellIn - 1
-            }
+
             if (items[i].sellIn < 0) {
                 if (!isAgedBrie(i)) {
                     if (!isBackstagePass(i)) {
@@ -49,6 +50,12 @@ class GildedRose(val items: Array<Item>) {
                     }
                 }
             }
+        }
+    }
+
+    private fun decrementSellIn(i: Int) {
+        if (!isLengendary(i)) {
+            items[i].sellIn = items[i].sellIn - 1
         }
     }
 
