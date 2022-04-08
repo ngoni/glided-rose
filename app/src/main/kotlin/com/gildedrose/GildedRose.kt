@@ -25,7 +25,8 @@ class GildedRose(val items: Array<Item>) {
             } else {
                 incrementItemQuality(item)
                 if (isItemType(item, ITEM_BACK_STAGE_PASS)) {
-                    incrementBackstagePassQuality(item)
+                    isBackstagePassSellInLessThan(item, 11)
+                    isBackstagePassSellInLessThan(item,6)
                 }
             }
 
@@ -45,11 +46,6 @@ class GildedRose(val items: Array<Item>) {
                 }
             }
         }
-    }
-
-    private fun incrementBackstagePassQuality(item: Item) {
-        isBackstagePassSellInLessThan(item, 11)
-        isBackstagePassSellInLessThan(item,6)
     }
 
     private fun isBackstagePassSellInLessThan(item : Item, days: Int) {
