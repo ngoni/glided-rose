@@ -15,12 +15,7 @@ class GildedRose(val items: Array<Item>) {
                 if (items[i].quality < 50) {
                     items[i].quality = items[i].quality + 1
                     if (isBackstagePass(i)) {
-                        if (isSellInLessThan(i, 11)) {
-                            incrementItemQuality(i)
-                        }
-                        if (isSellInLessThan(i, 6)) {
-                            incrementItemQuality(i)
-                        }
+                        incrementBackstagePassQuality(i)
                     }
                 }
             }
@@ -36,6 +31,15 @@ class GildedRose(val items: Array<Item>) {
                     incrementItemQuality(i)
                 }
             }
+        }
+    }
+
+    private fun incrementBackstagePassQuality(i: Int) {
+        if (isSellInLessThan(i, 11)) {
+            incrementItemQuality(i)
+        }
+        if (isSellInLessThan(i, 6)) {
+            incrementItemQuality(i)
         }
     }
 
