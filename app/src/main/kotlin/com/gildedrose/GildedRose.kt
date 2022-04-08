@@ -3,6 +3,7 @@ package com.gildedrose
 class GildedRose(val items: Array<Item>) {
 
     companion object {
+        const val ITEM_NORMAL = "Normal"
         const val ITEM_AGED_BRIE = "Aged Brie"
         const val ITEM_BACK_STAGE_PASS = "Backstage passes to a TAFKAL80ETC concert"
         const val ITEM_LEGENDARY = "Sulfuras, Hand of Ragnaros"
@@ -16,7 +17,9 @@ class GildedRose(val items: Array<Item>) {
             if (!isItemType(item, ITEM_AGED_BRIE)
                 && !isItemType(item, ITEM_BACK_STAGE_PASS)
             ) {
-                decrementItemQuality(item)
+                if (!isItemType(item, ITEM_LEGENDARY)) {
+                    decrementItemQuality(item)
+                }
             } else {
                 incrementItemQuality(item)
                 if (isItemType(item, ITEM_BACK_STAGE_PASS)) {
@@ -27,7 +30,11 @@ class GildedRose(val items: Array<Item>) {
             if (isSellInLessThan(item, 0)) {
                 if (!isItemType(item, ITEM_AGED_BRIE)) {
                     if (!isItemType(item, ITEM_BACK_STAGE_PASS)) {
-                        decrementItemQuality(item)
+                        if (!isItemType(item, ITEM_LEGENDARY)) {
+                            if (!isItemType(item, ITEM_LEGENDARY)) {
+                                decrementItemQuality(item)
+                            }
+                        }
                     } else {
                         dropQualityToZero(item)
                     }
@@ -63,9 +70,7 @@ class GildedRose(val items: Array<Item>) {
 
     private fun decrementItemQuality(item: Item) {
         if (item.quality > 0) {
-            if (!isItemType(item, ITEM_LEGENDARY)) {
-                item.quality = item.quality - 1
-            }
+            item.quality = item.quality - 1
         }
     }
 
