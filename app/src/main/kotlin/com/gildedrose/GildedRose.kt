@@ -4,7 +4,7 @@ class GildedRose(val items: Array<Item>) {
 
     fun updateQuality() {
         for (i in items.indices) {
-            if (!items[i].name.equals("Aged Brie")
+            if (!isAgedBrie(i)
                 && !items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")
             ) {
                 if (items[i].quality > 0) {
@@ -33,7 +33,7 @@ class GildedRose(val items: Array<Item>) {
                 items[i].sellIn = items[i].sellIn - 1
             }
             if (items[i].sellIn < 0) {
-                if (!items[i].name.equals("Aged Brie")) {
+                if (!isAgedBrie(i)) {
                     if (!items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")) {
                         if (items[i].quality > 0) {
                             if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
@@ -51,4 +51,6 @@ class GildedRose(val items: Array<Item>) {
             }
         }
     }
+
+    private fun isAgedBrie(i: Int) = items[i].name.equals("Aged Brie")
 }
