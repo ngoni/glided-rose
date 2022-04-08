@@ -11,7 +11,7 @@ class GildedRose(val items: Array<Item>) {
                 && !isBackstagePass(i)
             ) {
                 if (items[i].quality > 0) {
-                    if (!isLengendary(i)) {
+                    if (!isLegendary(i)) {
                         items[i].quality = items[i].quality - 1
                     }
                 }
@@ -37,7 +37,7 @@ class GildedRose(val items: Array<Item>) {
                 if (!isAgedBrie(i)) {
                     if (!isBackstagePass(i)) {
                         if (items[i].quality > 0) {
-                            if (!isLengendary(i)) {
+                            if (!isLegendary(i)) {
                                 items[i].quality = items[i].quality - 1
                             }
                         }
@@ -54,12 +54,12 @@ class GildedRose(val items: Array<Item>) {
     }
 
     private fun decrementSellIn(i: Int) {
-        if (!isLengendary(i)) {
+        if (!isLegendary(i)) {
             items[i].sellIn = items[i].sellIn - 1
         }
     }
 
-    private fun isLengendary(i: Int) = items[i].name.equals("Sulfuras, Hand of Ragnaros")
+    private fun isLegendary(i: Int) = items[i].name.equals("Sulfuras, Hand of Ragnaros")
 
     private fun isBackstagePass(i: Int) =
         items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")
