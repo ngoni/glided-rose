@@ -2,6 +2,12 @@ package com.gildedrose
 
 class GildedRose(val items: Array<Item>) {
 
+    companion object {
+        const val ITEM_AGED_BRIE = "Aged Brie"
+        const val ITEM_BACK_STAGE_PASS = "Backstage passes to a TAFKAL80ETC concert"
+        const val ITEM_LEGENDARY = "Sulfuras, Hand of Ragnaros"
+    }
+
     fun updateQuality() {
         for (i in items.indices) {
 
@@ -67,10 +73,10 @@ class GildedRose(val items: Array<Item>) {
         }
     }
 
-    private fun isLegendary(i: Int) = items[i].name.equals("Sulfuras, Hand of Ragnaros")
+    private fun isLegendary(i: Int) = items[i].name.equals(ITEM_LEGENDARY)
 
     private fun isBackstagePass(i: Int) =
-        items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")
+        items[i].name.equals(ITEM_BACK_STAGE_PASS)
 
-    private fun isAgedBrie(i: Int) = items[i].name.equals("Aged Brie")
+    private fun isAgedBrie(i: Int) = items[i].name.equals(ITEM_AGED_BRIE)
 }
