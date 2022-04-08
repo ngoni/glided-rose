@@ -8,7 +8,7 @@ class GildedRose(val items: Array<Item>) {
                 && !isBackstagePass(i)
             ) {
                 if (items[i].quality > 0) {
-                    if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
+                    if (!isLengendary(i)) {
                         items[i].quality = items[i].quality - 1
                     }
                 }
@@ -29,14 +29,14 @@ class GildedRose(val items: Array<Item>) {
                     }
                 }
             }
-            if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
+            if (!isLengendary(i)) {
                 items[i].sellIn = items[i].sellIn - 1
             }
             if (items[i].sellIn < 0) {
                 if (!isAgedBrie(i)) {
                     if (!isBackstagePass(i)) {
                         if (items[i].quality > 0) {
-                            if (!items[i].name.equals("Sulfuras, Hand of Ragnaros")) {
+                            if (!isLengendary(i)) {
                                 items[i].quality = items[i].quality - 1
                             }
                         }
@@ -51,6 +51,8 @@ class GildedRose(val items: Array<Item>) {
             }
         }
     }
+
+    private fun isLengendary(i: Int) = items[i].name.equals("Sulfuras, Hand of Ragnaros")
 
     private fun isBackstagePass(i: Int) =
         items[i].name.equals("Backstage passes to a TAFKAL80ETC concert")
