@@ -12,11 +12,12 @@ class GildedRose(val items: Array<Item>) {
     fun updateQuality() {
         for (item in items) {
 
-            if (isLegendary(item)) return
-
             decrementSellIn(item)
 
             when (item.name) {
+                ITEM_LEGENDARY -> {
+                    // do nothing
+                }
                 ITEM_AGED_BRIE -> {
                     modifyAgedBrieQuality(item)
                 }
@@ -47,8 +48,6 @@ class GildedRose(val items: Array<Item>) {
         if (isSellInLessThan(item, 6)) incrementItemQuality(item)
         if (isSellInLessThan(item, 0)) dropQualityToZero(item)
     }
-
-    private fun isLegendary(item: Item) = item.name == ITEM_LEGENDARY
 
     private fun isSellInLessThan(item: Item, days: Int) = item.sellIn < days
 
