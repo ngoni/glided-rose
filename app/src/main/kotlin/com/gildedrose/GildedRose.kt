@@ -13,16 +13,22 @@ class GildedRose(val items: Array<Item>) {
         for (item in items) {
 
             if (isLegendary(item)) return
+
             decrementSellIn(item)
 
             if (!isAgedBrie(item) && !isBackstagePass(item)) decrementItemQuality(item)
 
-            if (isAgedBrie(item)) incrementItemQuality(item)
+            if (isAgedBrie(item)) {
+                incrementItemQuality(item)
+                incrementItemQuality(item)
+            }
 
             if (isBackstagePass(item)) modifyBackstagePassQuality(item)
 
             if (isSellInLessThan(item, 0)) {
-                if (isAgedBrie(item)) incrementItemQuality(item) else decrementItemQuality(item)
+                if (!isAgedBrie(item)) {
+                    decrementItemQuality(item)
+                }
             }
         }
     }
