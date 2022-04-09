@@ -25,12 +25,16 @@ class GildedRose(val items: Array<Item>) {
                     modifyBackstagePassQuality(item)
                 }
                 else -> {
-                    modifyItemQuality(item)
-                    decrementItemQuality(item)
+                    modifyNormalItemQuality(item)
                 }
             }
 
         }
+    }
+
+    private fun modifyNormalItemQuality(item: Item) {
+        modifyItemQuality(item)
+        decrementItemQuality(item)
     }
 
     private fun modifyItemQuality(item: Item) {
