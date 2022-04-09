@@ -12,9 +12,8 @@ class GildedRose(val items: Array<Item>) {
     fun updateQuality() {
         for (item in items) {
 
-            if (!isLegendary(item)) {
-                decrementSellIn(item)
-            }
+            if (isLegendary(item)) return
+            decrementSellIn(item)
 
             if (!isAgedBrie(item)
                 && !isBackstagePass(item)
