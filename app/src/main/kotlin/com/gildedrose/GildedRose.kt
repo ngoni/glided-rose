@@ -6,6 +6,7 @@ class GildedRose(val items: Array<Item>) {
         const val ITEM_AGED_BRIE = "Aged Brie"
         const val ITEM_BACK_STAGE_PASS = "Backstage passes to a TAFKAL80ETC concert"
         const val ITEM_LEGENDARY = "Sulfuras, Hand of Ragnaros"
+        const val ITEM_CONJURED = "Conjured Mana Cake"
     }
 
     fun updateQuality() {
@@ -20,6 +21,10 @@ class GildedRose(val items: Array<Item>) {
                 }
                 ITEM_BACK_STAGE_PASS -> {
                     modifyBackstagePassQuality(item)
+                }
+                ITEM_CONJURED -> {
+                    modifyNormalItemQuality(item)
+                    modifyNormalItemQuality(item)
                 }
                 else -> {
                     modifyNormalItemQuality(item)
