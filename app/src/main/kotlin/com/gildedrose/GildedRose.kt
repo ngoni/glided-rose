@@ -16,16 +16,17 @@ class GildedRose(val items: Array<Item>) {
 
             decrementSellIn(item)
 
-            if (isAgedBrie(item)) modifyAgedBrieQuality(item)
+            if (isAgedBrie(item)) modifyAgedBrieQuality(item) else modifyItemQuality(item)
 
             if (isBackstagePass(item)) modifyBackstagePassQuality(item)
 
             if (!isAgedBrie(item) && !isBackstagePass(item)) decrementItemQuality(item)
 
-            if (!isAgedBrie(item)) {
-                if (isSellInLessThan(item, 0)) decrementItemQuality(item)
-            }
         }
+    }
+
+    private fun modifyItemQuality(item: Item) {
+        if (isSellInLessThan(item, 0)) decrementItemQuality(item)
     }
 
     private fun modifyAgedBrieQuality(item: Item) {
