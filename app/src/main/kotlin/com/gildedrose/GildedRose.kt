@@ -19,12 +19,7 @@ class GildedRose(val items: Array<Item>) {
 
             if (isAgedBrie(item)) incrementItemQuality(item)
 
-            if (isBackstagePass(item)) {
-                incrementBackstagePassQuality(item)
-                if (isSellInLessThan(item, 0)) {
-                    dropQualityToZero(item)
-                }
-            }
+            if (isBackstagePass(item)) modifyBackstagePassQuality(item)
 
             if (isSellInLessThan(item, 0)) {
                 if (isAgedBrie(item)) incrementItemQuality(item) else decrementItemQuality(item)
@@ -32,10 +27,11 @@ class GildedRose(val items: Array<Item>) {
         }
     }
 
-    private fun incrementBackstagePassQuality(item: Item) {
+    private fun modifyBackstagePassQuality(item: Item) {
         incrementItemQuality(item)
         if (isSellInLessThan(item, 11)) incrementItemQuality(item)
         if (isSellInLessThan(item, 6)) incrementItemQuality(item)
+        if (isSellInLessThan(item, 0)) dropQualityToZero(item)
     }
 
     private fun isBackstagePass(item: Item) = item.name == ITEM_BACK_STAGE_PASS
