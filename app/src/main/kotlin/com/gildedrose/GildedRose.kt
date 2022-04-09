@@ -11,9 +11,7 @@ class GildedRose(val items: Array<Item>) {
 
     fun updateQuality() {
         for (item in items) {
-
             decrementSellIn(item)
-
             when (item.name) {
                 ITEM_LEGENDARY -> return
                 ITEM_AGED_BRIE -> {
@@ -30,7 +28,6 @@ class GildedRose(val items: Array<Item>) {
                     modifyNormalItemQuality(item)
                 }
             }
-
         }
     }
 
