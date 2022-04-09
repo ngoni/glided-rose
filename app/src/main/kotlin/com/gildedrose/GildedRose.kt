@@ -14,19 +14,13 @@ class GildedRose(val items: Array<Item>) {
             decrementSellIn(item)
             when (item.name) {
                 ITEM_LEGENDARY -> return
-                ITEM_AGED_BRIE -> {
-                    modifyAgedBrieQuality(item)
-                }
-                ITEM_BACK_STAGE_PASS -> {
-                    modifyBackstagePassQuality(item)
-                }
+                ITEM_AGED_BRIE -> modifyAgedBrieQuality(item)
+                ITEM_BACK_STAGE_PASS -> modifyBackstagePassQuality(item)
                 ITEM_CONJURED -> {
                     modifyNormalItemQuality(item)
                     modifyNormalItemQuality(item)
                 }
-                else -> {
-                    modifyNormalItemQuality(item)
-                }
+                else -> modifyNormalItemQuality(item)
             }
         }
     }
