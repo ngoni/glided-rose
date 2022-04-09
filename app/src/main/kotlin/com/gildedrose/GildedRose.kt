@@ -53,11 +53,11 @@ class GildedRose(val items: Array<Item>) {
         }
     }
 
-    private fun isBackstagePass(item: Item) = isItemType(item, ITEM_BACK_STAGE_PASS)
+    private fun isBackstagePass(item: Item) = item.name == ITEM_BACK_STAGE_PASS
 
-    private fun isLegendary(item: Item) = isItemType(item, ITEM_LEGENDARY)
+    private fun isLegendary(item: Item) = item.name == ITEM_LEGENDARY
 
-    private fun isAgedBrie(item: Item) = isItemType(item, ITEM_AGED_BRIE)
+    private fun isAgedBrie(item: Item) = item.name == ITEM_AGED_BRIE
 
     private fun isSellInLessThan(item: Item, days: Int) = item.sellIn < days
 
@@ -80,6 +80,4 @@ class GildedRose(val items: Array<Item>) {
     private fun decrementSellIn(item: Item) {
         item.sellIn = item.sellIn - 1
     }
-
-    private fun isItemType(item: Item, name: String) = item.name == name
 }
