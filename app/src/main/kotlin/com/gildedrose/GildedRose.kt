@@ -3,7 +3,6 @@ package com.gildedrose
 class GildedRose(val items: Array<Item>) {
 
     companion object {
-        const val ITEM_NORMAL = "Normal"
         const val ITEM_AGED_BRIE = "Aged Brie"
         const val ITEM_BACK_STAGE_PASS = "Backstage passes to a TAFKAL80ETC concert"
         const val ITEM_LEGENDARY = "Sulfuras, Hand of Ragnaros"
