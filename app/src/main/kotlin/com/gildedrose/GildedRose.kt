@@ -15,9 +15,7 @@ class GildedRose(val items: Array<Item>) {
             decrementSellIn(item)
 
             when (item.name) {
-                ITEM_LEGENDARY -> {
-                    // do nothing
-                }
+                ITEM_LEGENDARY -> return
                 ITEM_AGED_BRIE -> {
                     modifyAgedBrieQuality(item)
                 }
