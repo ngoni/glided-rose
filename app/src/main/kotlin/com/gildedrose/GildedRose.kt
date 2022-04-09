@@ -18,10 +18,7 @@ class GildedRose(val items: Array<Item>) {
 
             if (!isAgedBrie(item) && !isBackstagePass(item)) decrementItemQuality(item)
 
-            if (isAgedBrie(item)) {
-                incrementItemQuality(item)
-                incrementItemQuality(item)
-            }
+            if (isAgedBrie(item)) modifyAgedBrieQuality(item)
 
             if (isBackstagePass(item)) modifyBackstagePassQuality(item)
 
@@ -31,6 +28,11 @@ class GildedRose(val items: Array<Item>) {
                 }
             }
         }
+    }
+
+    private fun modifyAgedBrieQuality(item: Item) {
+        incrementItemQuality(item)
+        incrementItemQuality(item)
     }
 
     private fun modifyBackstagePassQuality(item: Item) {
