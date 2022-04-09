@@ -12,19 +12,19 @@ class GildedRose(val items: Array<Item>) {
     fun updateQuality() {
         for (item in items) {
 
-            if (!isItemType(item, ITEM_LEGENDARY)) {
+            if (!isLegendary(item)) {
                 decrementSellIn(item)
             }
 
-            if (!isItemType(item, ITEM_AGED_BRIE)
-                && !isItemType(item, ITEM_BACK_STAGE_PASS)
+            if (!isAgedBrie(item)
+                && !isBackstagePass(item)
             ) {
-                if (!isItemType(item, ITEM_LEGENDARY)) {
+                if (!isLegendary(item)) {
                     decrementItemQuality(item)
                 }
             } else {
                 incrementItemQuality(item)
-                if (isItemType(item, ITEM_BACK_STAGE_PASS)) {
+                if (isBackstagePass(item)) {
                     if (isSellInLessThan(item, 11)) {
                         incrementItemQuality(item)
                     }
@@ -36,10 +36,10 @@ class GildedRose(val items: Array<Item>) {
             }
 
             if (isSellInLessThan(item, 0)) {
-                if (!isItemType(item, ITEM_AGED_BRIE)) {
-                    if (!isItemType(item, ITEM_BACK_STAGE_PASS)) {
-                        if (!isItemType(item, ITEM_LEGENDARY)) {
-                            if (!isItemType(item, ITEM_LEGENDARY)) {
+                if (!isAgedBrie(item)) {
+                    if (!isBackstagePass(item)) {
+                        if (!isLegendary(item)) {
+                            if (!isLegendary(item)) {
                                 decrementItemQuality(item)
                             }
                         }
@@ -52,6 +52,12 @@ class GildedRose(val items: Array<Item>) {
             }
         }
     }
+
+    private fun isBackstagePass(item: Item) = isItemType(item, ITEM_BACK_STAGE_PASS)
+
+    private fun isLegendary(item: Item) = isItemType(item, ITEM_LEGENDARY)
+
+    private fun isAgedBrie(item: Item) = isItemType(item, ITEM_AGED_BRIE)
 
     private fun isSellInLessThan(item: Item, days: Int) = item.sellIn < days
 
