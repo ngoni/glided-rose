@@ -21,8 +21,9 @@ class GildedRose(val items: Array<Item>) {
                 decrementItemQuality(item)
             } else {
                 incrementItemQuality(item)
-                if (isBackstagePass(item)) incrementBackstagePassQuality(item)
             }
+
+            if (isBackstagePass(item)) incrementBackstagePassQuality(item)
 
             if (isSellInLessThan(item, 0)) {
                 if (isAgedBrie(item)) incrementItemQuality(item) else decrementItemQuality(item)
