@@ -122,6 +122,12 @@ class GildedRoseTest {
         assertEquals(80, app.items[0].quality)
     }
 
+    @Test
+    fun Conjured() {
+        val app = checkItem("Conjured Mana Cake", 6, 50)
+        assertEquals(48, app.items[0].quality)
+    }
+
     private fun checkItem(item: String?, sellin: Int?, quality: Int?): GildedRose {
         val items = arrayOf(
             Item(
