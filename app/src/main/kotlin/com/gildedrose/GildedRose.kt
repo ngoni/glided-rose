@@ -30,9 +30,7 @@ class GildedRose(val items: Array<Item>) {
                 if (!isAgedBrie(item)) {
                     if (!isBackstagePass(item)) {
                         if (!isLegendary(item)) {
-                            if (!isLegendary(item)) {
-                                decrementItemQuality(item)
-                            }
+                            decrementItemQuality(item)
                         }
                     } else {
                         dropQualityToZero(item)
