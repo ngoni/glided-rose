@@ -1,6 +1,6 @@
 package com.gildedrose
 
-import com.gildedrose.data.Item
+import com.gildedrose.data.*
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -17,124 +17,139 @@ class GildedRoseTest {
 
     @Test
     fun AfterSellByDateDegradeDouble() {
-        val app = checkItem("Any", 0, 10)
+        val item = NormalItem("Any", 0, 10)
+        val app = checkItem(item)
         assertEquals(8, app.items[0].quality)
     }
 
     @Test
     fun BeforeSellByDateDegradeSingle() {
-        val app = checkItem("Any", 1, 10)
+        val item = NormalItem("Any", 1, 10)
+        val app = checkItem(item)
         assertEquals(9, app.items[0].quality)
     }
 
     @Test
     fun QualityOfItemNotNegative() {
-        val app = checkItem("Any", 0, 0)
+        val item = NormalItem("Any", 0, 0)
+        val app = checkItem(item)
         assertEquals(0, app.items[0].quality)
     }
 
     @Test
     fun BrieImprovesWithAge() {
-        val app = checkItem("Aged Brie", 0, 0)
+        val item = AgedBrieItem("Aged Brie", 0, 0)
+        val app = checkItem(item)
         assertEquals(2, app.items[0].quality)
     }
 
     @Test
     fun QualityOfItemLimit50() {
-        val app = checkItem("Aged Brie", 0, 50)
+        val item = AgedBrieItem("Aged Brie", 0, 50)
+        val app = checkItem(item)
         assertEquals(50, app.items[0].quality)
     }
 
     @Test
     fun LegendarySulfuras() {
-        val app = checkItem("Sulfuras, Hand of Ragnaros", 0, 80)
+        val item = LegendaryItem("Sulfuras, Hand of Ragnaros", 0, 80)
+        val app = checkItem(item)
         assertEquals(80, app.items[0].quality)
     }
 
     @Test
     fun BackstageValueLosesAllQualityOnDate() {
-        val app = checkItem("Backstage passes to a TAFKAL80ETC concert", 0, 10)
+        val item = BackstagePassItem("Backstage passes to a TAFKAL80ETC concert", 0, 10)
+        val app = checkItem(item)
         assertEquals(0, app.items[0].quality)
     }
 
     @Test
     fun BackstageValueLongBefore() {
-        val app = checkItem("Backstage passes to a TAFKAL80ETC concert", 100, 100)
+        val item = BackstagePassItem("Backstage passes to a TAFKAL80ETC concert", 100, 100)
+        val app = checkItem(item)
         assertEquals(100, app.items[0].quality)
     }
 
     @Test
     fun BackstageValue10DaysBefore() {
-        val app = checkItem("Backstage passes to a TAFKAL80ETC concert", 8, 47)
+        val item = BackstagePassItem("Backstage passes to a TAFKAL80ETC concert", 8, 47)
+        val app = checkItem(item)
         assertEquals(49, app.items[0].quality)
     }
 
     @Test
     fun BackstageValueTwoDaysBefore() {
-        val app = checkItem("Backstage passes to a TAFKAL80ETC concert", 2, 40)
+        val item = BackstagePassItem("Backstage passes to a TAFKAL80ETC concert", 2, 40)
+        val app = checkItem(item)
         assertEquals(43, app.items[0].quality)
     }
 
     @Test
     fun Backstage1() {
-        val app = checkItem("Backstage passes to a TAFKAL80ETC concert", 10, 49)
+        val item = BackstagePassItem("Backstage passes to a TAFKAL80ETC concert", 10, 49)
+        val app = checkItem(item)
         assertEquals(50, app.items[0].quality)
     }
 
     @Test
     fun Backstage2() {
-        val app = checkItem("Backstage passes to a TAFKAL80ETC concert", 5, 51)
+        val item = BackstagePassItem("Backstage passes to a TAFKAL80ETC concert", 5, 51)
+        val app = checkItem(item)
         assertEquals(51, app.items[0].quality)
     }
 
     @Test
     fun Backstage3() {
-        val app = checkItem("Backstage passes to a TAFKAL80ETC concert", 13, 51)
+        val item = BackstagePassItem("Backstage passes to a TAFKAL80ETC concert", 13, 51)
+        val app = checkItem(item)
         assertEquals(51, app.items[0].quality)
     }
 
     @Test
     fun Backstage4() {
-        val app = checkItem("Backstage passes to a TAFKAL80ETC concert", 15, 45)
+        val item = BackstagePassItem("Backstage passes to a TAFKAL80ETC concert", 15, 45)
+        val app = checkItem(item)
         assertEquals(46, app.items[0].quality)
     }
 
     @Test
     fun Backstage5() {
-        val app = checkItem("Backstage passes to a TAFKAL80ETC concert", 5, 45)
+        val item = BackstagePassItem("Backstage passes to a TAFKAL80ETC concert", 5, 45)
+        val app = checkItem(item)
         assertEquals(48, app.items[0].quality)
     }
 
     @Test
     fun Backstage6() {
-        val app = checkItem("Backstage passes to a TAFKAL80ETC concert", 5, 49)
+        val item = BackstagePassItem("Backstage passes to a TAFKAL80ETC concert", 5, 49)
+        val app = checkItem(item)
         assertEquals(50, app.items[0].quality)
     }
 
     @Test
     fun Backstage7() {
-        val app = checkItem("Backstage passes to a TAFKAL80ETC concert", 7, 52)
+        val item = BackstagePassItem("Backstage passes to a TAFKAL80ETC concert", 7, 52)
+        val app = checkItem(item)
         assertEquals(52, app.items[0].quality)
     }
 
     @Test
     fun LegendarySulfuras2() {
-        val app = checkItem("Sulfuras, Hand of Ragnaros", -1, 80)
+        val item = LegendaryItem("Sulfuras, Hand of Ragnaros", -1, 80)
+        val app = checkItem(item)
         assertEquals(80, app.items[0].quality)
     }
 
     @Test
     fun Conjured() {
-        val app = checkItem("Conjured Mana Cake", 6, 50)
+        val item = ConjuredItem("Conjured Mana Cake", 6, 50)
+        val app = checkItem(item)
         assertEquals(48, app.items[0].quality)
     }
 
-    private fun checkItem(item: String?, sellin: Int?, quality: Int?): GildedRose {
-        val items = arrayOf(
-            Item(
-                item!!, sellin!!, quality!!
-            )
-        )
+    private fun checkItem(item: Item): GildedRose {
+        val items = arrayOf(item)
         val app = GildedRose(items)
         app.updateQuality()
         return app
