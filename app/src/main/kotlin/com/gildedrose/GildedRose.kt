@@ -12,17 +12,32 @@ class GildedRose(val items: Array<Item>) {
     fun updateQuality() {
         for (item in items) {
             decrementSellIn(item)
-            when (item.name) {
-                ITEM_LEGENDARY -> return
-                ITEM_AGED_BRIE -> modifyAgedBrieQuality(item)
-                ITEM_BACK_STAGE_PASS -> modifyBackstagePassQuality(item)
-                ITEM_CONJURED -> {
-                    modifyNormalItemQuality(item)
-                    modifyNormalItemQuality(item)
-                }
-                else -> modifyNormalItemQuality(item)
+            if (isLegendary(item)) return
+            if (isAgedBrie(item)) return modifyAgedBrieQuality(item)
+            if (isBackstagePass(item)) return modifyBackstagePassQuality(item)
+            if (isConjured(item)) {
+                modifyNormalItemQuality(item)
+                modifyNormalItemQuality(item)
+                return
             }
+            return modifyNormalItemQuality(item)
         }
+    }
+
+    private fun isConjured(item: Item): Boolean {
+        return item.name == ITEM_CONJURED
+    }
+
+    private fun isBackstagePass(item: Item): Boolean {
+        return item.name == ITEM_BACK_STAGE_PASS
+    }
+
+    private fun isAgedBrie(item: Item): Boolean {
+        return item.name == ITEM_AGED_BRIE
+    }
+
+    private fun isLegendary(item: Item): Boolean {
+        return item.name == ITEM_LEGENDARY
     }
 
     private fun modifyNormalItemQuality(item: Item) {
