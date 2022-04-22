@@ -1,10 +1,12 @@
-package com.gildedrose
+package com.gildedrose.data
 
-data class Item(
+open class Item(
     val name: String,
     var sellIn: Int,
     var quality: Int
-) {
+) : ItemBehaviour {
+    override fun updateQuality() {
+    }
 
     @Override
     override fun toString(): String {

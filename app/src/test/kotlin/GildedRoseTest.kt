@@ -1,5 +1,6 @@
 package com.gildedrose
 
+import com.gildedrose.data.Item
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

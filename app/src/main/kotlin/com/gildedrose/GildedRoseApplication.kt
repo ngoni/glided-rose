@@ -1,5 +1,7 @@
 package com.gildedrose;
 
+import com.gildedrose.data.Item
+
 object GildedRoseApplication {
 
     @JvmStatic
