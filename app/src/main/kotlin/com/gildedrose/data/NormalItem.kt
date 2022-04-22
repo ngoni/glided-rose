@@ -15,7 +15,7 @@ class NormalItem(name: String, sellInt: Int, quality: Int) : Item(name, sellInt,
         if (isSellInLessThan()) decrementItemQuality()
     }
 
-    private fun isSellInLessThan() = this.sellIn < 0
+    private fun isSellInLessThan() = this.sellIn < 1
 
     private fun decrementItemQuality() {
         if (this.quality > 0) {
