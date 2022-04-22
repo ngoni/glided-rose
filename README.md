@@ -1,7 +1,7 @@
 # Glided-Rose
 
 ### Approach to solving the problem
-In this branch, I further refined my initial ideas from "code-refactor" branch.
+In this branch, I further refined my initial ideas from [Code Refactor](https://github.com/ngoni/glided-rose/tree/code-refactor) branch.
 My implementation of this solution uses the [Strategy Pattern](https://sourcemaking.com/design_patterns/strategy)
 
 
